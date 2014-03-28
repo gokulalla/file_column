@@ -11,12 +11,13 @@ Gem::Specification.new do |s|
   s.files = [
       "init.rb",
       "lib/file_column.rb",
-      "lib/file_column_helper.rb",
-      "lib/file_compat.rb",
-      "lib/magick_file_column.rb",
-      "lib/rails_file_column.rb",
-      "lib/test_case.rb",
-      "lib/validations.rb",
+      "lib/file_column/file_column.rb",
+      "lib/file_column/file_column_helper.rb",
+      "lib/file_column/file_compat.rb",
+      "lib/file_column/magick_file_column.rb",
+      "lib/file_column/rails_file_column.rb",
+      "lib/file_column/test_case.rb",
+      "lib/file_column/validations.rb",
    ]
   s.has_rdoc = true
   s.require_paths = ["lib"]
