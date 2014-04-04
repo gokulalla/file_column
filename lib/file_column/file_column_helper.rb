@@ -23,8 +23,8 @@ module FileColumnHelper
   #
   #    <%= form_tag {:action => "create", ...}, :multipart => true %>
   def file_column_field(object, method, options={})
-    result = ActionView::Helpers::InstanceTag.new(object.dup, method.to_s+"_temp", self).to_input_field_tag("hidden", {})
-    result << ActionView::Helpers::InstanceTag.new(object.dup, method, self).to_input_field_tag("file", options)
+    result = tag("input", {"type" => "hidden", "id" => "#{object.dup}_#{method.to_s+"_temp"}", "name" => "#{object.dup}[#{method.to_s+"_temp"}]"})
+    result << tag("file", {"type" => "file", "id" => "#{object.dup}_#{method.to_s}", "name" => "#{object.dup}[#{method.to_s}]"})
   end
   
   # Creates an URL where an uploaded file can be accessed. When called for an Entry object with
