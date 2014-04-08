@@ -1,4 +1,5 @@
-This fork is an update of the file_column gem for Rails 3/4.
+This fork is an update of the file_column gem for Rails 3/4.  It will also partition
+store directories according to the object id.
 
 FEATURES
 ========
@@ -51,6 +52,4 @@ You can run the tests by starting the "*_test.rb" in the directory "test"
 BUGS & FEEDBACK
 ===============
 
-Bug reports (as well as patches) and feedback are very welcome. Please send it to
-sebastian.kanthak@muehlheim.de
-
+Submit an issue to Github or a pull request

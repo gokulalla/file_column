@@ -3,7 +3,6 @@
 # automatically included into ActionView::Base, thereby making this module's
 # methods available in all your views.
 module FileColumnHelper
-  
   # Use this helper to create an upload field for a file_column attribute. This will generate
   # an additional hidden field to keep uploaded files during form-redisplays. For example,
   # when called with
@@ -23,8 +22,9 @@ module FileColumnHelper
   #
   #    <%= form_tag {:action => "create", ...}, :multipart => true %>
   def file_column_field(object, method, options={})
-    result = tag("input", {"type" => "hidden", "id" => "#{object.dup}_#{method.to_s+"_temp"}", "name" => "#{object.dup}[#{method.to_s+"_temp"}]"})
-    result << tag("file", {"type" => "file", "id" => "#{object.dup}_#{method.to_s}", "name" => "#{object.dup}[#{method.to_s}]"})
+    object_dupe = object.dup
+    result = hidden_field(object_dupe, "#{method.to_s}_temp")
+    result << file_field(object_dupe, method.to_s)
   end
   
   # Creates an URL where an uploaded file can be accessed. When called for an Entry object with
