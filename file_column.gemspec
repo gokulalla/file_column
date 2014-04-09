@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
   s.date = %q{2014-03-27}
   s.description = %q{An ASEE fork of the file_column plugin because we're being stubborn.'}
   s.files = [
-      "init.rb",
       "lib/file_column.rb",
       "lib/file_column/file_column.rb",
       "lib/file_column/file_column_helper.rb",
