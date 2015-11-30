@@ -100,6 +100,9 @@ module FileColumn # :nodoc:
       self
     end
 
+    def after_rollback
+    end
+
     def after_destroy
     end
 
@@ -300,6 +303,12 @@ module FileColumn # :nodoc:
 
     def temp_path
       File.join(@tmp_dir, @filename)
+    end
+
+    def after_rollback
+      super
+
+      delete_files
     end
 
     def after_save
@@ -681,6 +690,13 @@ module FileColumn # :nodoc:
         send(state_method).after_destroy
       end
       after_destroy after_destroy_method
+
+      after_rollback_method = "#{attr}_after_rollback".to_sym
+
+      define_method after_rollback_method do
+        send(state_method).after_rollback
+      end
+      after_rollback after_rollback_method
       
       define_method "#{attr}_just_uploaded?" do
         send(state_method).just_uploaded?
@@ -693,7 +709,7 @@ module FileColumn # :nodoc:
         my_options
       end
 
-      private after_save_method, after_destroy_method
+      private after_save_method, after_destroy_method, after_rollback_method
 
       FileColumn::MagickExtension::file_column(self, attr, my_options) if options[:magick]
     end
