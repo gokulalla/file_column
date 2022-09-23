@@ -224,7 +224,9 @@ module FileColumn # :nodoc:
       # stored uploaded file into local_file_path
       # If it was a Tempfile object, the temporary file will be
       # cleaned up automatically, so we do not have to care for this
-      if file.respond_to?(:local_path) and file.path and File.exists?(file.path)
+      if file.respond_to?(:local_path) and file.local_path and File.exists?(file.local_path)
+        FileUtils.copy_file(file.path, local_file_path)
+      elsif file.respond_to?(:path) and file.path and File.exists?(file.path)
         FileUtils.copy_file(file.path, local_file_path)
       elsif file.respond_to?(:read)
         File.open(local_file_path, "wb") { |f| f.write(file.read) }
